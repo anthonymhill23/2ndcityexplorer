@@ -32,7 +32,7 @@ class App extends React.Component {
     try {
       let cityData = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${city}&format=json`);
       this.setState({
-        cityData: cityData.data[0]      });
+        cityData: cityData.data      });
       console.log(this.state.cityData);
     } catch (error) {
       console.log('error', error.response);
