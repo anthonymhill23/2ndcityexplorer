@@ -1,4 +1,5 @@
 ![WRRC](./src/Day1snip.jpg)
+![WRRC with server](./src/Untitled.png)
 
 
 # Project Name
@@ -22,3 +23,4 @@ Version 1. Search bar functionality as well as map population. as well as error 
 Scott evans for creating the miro screenshot with me. 
 Liesel White for always being a sounding board back and forth
 David Heckler for putting up with me and my confusion
+Simon son for day 2. 
