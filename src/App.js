@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Cityform from './Cityform';
-import Results from './Results';
-import Header from './Header';
+import Cityform from './Cityform.js';
+import Results from './Results.js';
+import Header from './Header.js';
 import axios from 'axios';
-import Errormodal from './Errormodal';
-import Weather from './Weather';
-import Movie from './Movie';
+import Errormodal from './Errormodal.js';
+import Weather from './Weather.js';
+import Movie from './Movie.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -70,7 +70,7 @@ class App extends React.Component {
       this.setState({
         error: true,
         showModal: true,
-        errorMessage: `An error has been caught:  ${error.response.data.error}`
+        errorMessage: `An error has been caught:  ${error.response.status} ${error.response.statusText}`
       });
       // console.log(this.state.errorMessage);
     }
