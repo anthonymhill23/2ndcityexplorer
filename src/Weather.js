@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
-import Weatherdata from './Weatherdata'
+import Weatherdata from './Weatherdata.js'
 
 class Weather extends React.Component {
 
@@ -20,10 +20,10 @@ class Weather extends React.Component {
       <>
         <Modal
           show={this.props.weatherModal}
-          onClick={this.props.hideWeatherModal}
+          onClick={this.props.hideModal}
         >
           <Modal.Header closeButton></Modal.Header>
-          <Modal.Body onClick={this.props.hideWeatherModal}>
+          <Modal.Body onClick={this.props.hideModal}>
             {weatherResults}
           </Modal.Body>
         </Modal> 
