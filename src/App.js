@@ -20,7 +20,7 @@ class App extends React.Component {
       showModal: false,
       weatherData: ['sunny'],
       weatherModal: false,
-      movieData:[''],
+      movieData: [''],
       movieModal: false,
     };
   };
@@ -57,6 +57,7 @@ class App extends React.Component {
     try {
       let weatherCall = `${process.env.REACT_APP_SERVER}/weather?city=${city}`;
       let weatherData = await axios.get(weatherCall)
+      console.log(weatherData.data)
       this.setState({
         weatherData: weatherData.data,
       })
@@ -65,10 +66,11 @@ class App extends React.Component {
       })
       // console.log(weatherData)
     } catch (error) {
+      console.log(error)
       this.setState({
         error: true,
         showModal: true,
-        errorMessage: `An error has been caught: ${error.response.status} ${error.response.statusText}`
+        errorMessage: `An error has been caught:  ${error.response.data.error}`
       });
       // console.log(this.state.errorMessage);
     }
@@ -93,47 +95,47 @@ class App extends React.Component {
       // console.log(this.state.errorMessage);
     }
   }
-    render() {
-      let cityResults = this.state.cityData.map((city, index) => {
-        // console.log(index)
-        return (
-          <Results
-            key={index}
-            city={city}
-            getWeather={this.getWeather}
-            getMovies={this.getMovies}
-          />
-        );
-      }
-      );
+  render() {
+    let cityResults = this.state.cityData.map((city, index) => {
+      // console.log(index)
       return (
-        <>
-          <Header />
-          <Cityform
-            handleCityCall={this.handleCityCall}
-          />
-          <main>
-            {cityResults}
-          </main>
-          <Errormodal
-            error={this.state.error}
-            errorMessage={this.state.errorMessage}
-            modalState={this.state.showModal}
-            showModal={this.showModal}
-            hideModal={this.hideModal}
-          />
-          <Weather
-            weatherModal={this.state.weatherModal}
-            hideWeatherModal={this.hideModal}
-            weatherData={this.state.weatherData}
-          />
-          <Movie
-            movieModal={this.state.movieModal}
-            hideMovieModal={this.hideModal}
-            movieData={this.state.movieData}  
-          />
-        </>
+        <Results
+          key={index}
+          city={city}
+          getWeather={this.getWeather}
+          getMovies={this.getMovies}
+        />
       );
     }
+    );
+    return (
+      <>
+        <Header />
+        <Cityform
+          handleCityCall={this.handleCityCall}
+        />
+        <main>
+          {cityResults}
+        </main>
+        <Errormodal
+          error={this.state.error}
+          errorMessage={this.state.errorMessage}
+          modalState={this.state.showModal}
+          showModal={this.showModal}
+          hideModal={this.hideModal}
+        />
+        <Weather
+          weatherModal={this.state.weatherModal}
+          hideWeatherModal={this.hideModal}
+          weatherData={this.state.weatherData}
+        />
+        <Movie
+          movieModal={this.state.movieModal}
+          hideMovieModal={this.hideModal}
+          movieData={this.state.movieData}
+        />
+      </>
+    );
   }
+}
 export default App;
