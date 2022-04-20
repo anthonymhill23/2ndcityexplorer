@@ -6,6 +6,7 @@ import Results from './Results';
 import Header from './Header';
 import axios from 'axios';
 import Errormodal from './Errormodal';
+import Weather from './Weather'
 
 class App extends React.Component {
   constructor(props) {
@@ -16,11 +17,19 @@ class App extends React.Component {
       error: false,
       errorMessage: '',
       showModal: false,
+      weatherData: ['sunny'],
+      weatherModal: false
     };
   };
+  hideWeatherModal = () => {
+    this.setState({
+      weatherModal: false,
+    })
+  }
   hideModal = () => {
     this.setState({
       showModal: false,
+      weatherModal: false,
     })
   }
   showModal = () => {
@@ -32,7 +41,8 @@ class App extends React.Component {
     try {
       let cityData = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${city}&format=json`);
       this.setState({
-        cityData: cityData.data      });
+        cityData: [cityData.data[0]]
+      });
       console.log(this.state.cityData);
     } catch (error) {
       console.log('error', error.response);
@@ -44,6 +54,25 @@ class App extends React.Component {
       console.log(this.state.errorMessage);
     }
   }
+  getWeather = async (city) => {
+    try{let weatherCall = `${process.env.REACT_APP_SERVER}/weather?city=${city}`;
+    let weatherData = await axios.get(weatherCall)
+    this.setState({
+      weatherData: weatherData.data,
+    })
+    this.setState({
+      weatherModal: true,
+    })
+    console.log(weatherData)
+  } catch (error){
+    this.setState({
+      error: true,
+      showModal: true,
+      errorMessage: `An error has been caught: ${error.response.status} ${error.response.statusText}`
+    });
+    console.log(this.state.errorMessage);
+  }
+}
   render() {
     let cityResults = this.state.cityData.map((city, index) => {
       console.log(index)
@@ -51,6 +80,7 @@ class App extends React.Component {
         <Results
           key={index}
           city={city}
+          getWeather={this.getWeather}
         />
       );
     }
@@ -70,6 +100,11 @@ class App extends React.Component {
           modalState={this.state.showModal}
           showModal={this.showModal}
           hideModal={this.hideModal}
+        />
+        <Weather
+          weatherModal={this.state.weatherModal}
+          hideweatherModal={this.hideModal}
+          weatherData={this.state.weatherData}
         />
       </>
     );

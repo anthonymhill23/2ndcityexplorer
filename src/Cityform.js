@@ -1,3 +1,4 @@
+
 import React from  'react';
 import {Form, FormGroup} from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
@@ -13,6 +14,7 @@ class Cityform extends React.Component {
   };
   searchCity = () => {
     this.props.handleCityCall(this.state.searchQuery);}
+
 render(){
   return (
     <>
