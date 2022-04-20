@@ -6,7 +6,8 @@ import Results from './Results';
 import Header from './Header';
 import axios from 'axios';
 import Errormodal from './Errormodal';
-import Weather from './Weather'
+import Weather from './Weather';
+import Movie from './Movie';
 
 class App extends React.Component {
   constructor(props) {
@@ -18,18 +19,16 @@ class App extends React.Component {
       errorMessage: '',
       showModal: false,
       weatherData: ['sunny'],
-      weatherModal: false
+      weatherModal: false,
+      movieData:[''],
+      movieModal: false,
     };
   };
-  hideWeatherModal = () => {
-    this.setState({
-      weatherModal: false,
-    })
-  }
   hideModal = () => {
     this.setState({
       showModal: false,
       weatherModal: false,
+      movieModal: false,
     })
   }
   showModal = () => {
@@ -41,73 +40,100 @@ class App extends React.Component {
     try {
       let cityData = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${city}&format=json`);
       this.setState({
-        cityData: [cityData.data[0]]
+        cityData: cityData.data
       });
-      console.log(this.state.cityData);
+      // console.log(this.state.cityData);
     } catch (error) {
-      console.log('error', error.response);
+      // console.log('error', error.response);
       this.setState({
         error: true,
         showModal: true,
         errorMessage: `An error has been caught: ${error.response.status} ${error.response.statusText}`
       });
-      console.log(this.state.errorMessage);
+      // console.log(this.state.errorMessage);
     }
   }
   getWeather = async (city) => {
-    try{let weatherCall = `${process.env.REACT_APP_SERVER}/weather?city=${city}`;
-    let weatherData = await axios.get(weatherCall)
-    this.setState({
-      weatherData: weatherData.data,
-    })
-    this.setState({
-      weatherModal: true,
-    })
-    console.log(weatherData)
-  } catch (error){
-    this.setState({
-      error: true,
-      showModal: true,
-      errorMessage: `An error has been caught: ${error.response.status} ${error.response.statusText}`
-    });
-    console.log(this.state.errorMessage);
+    try {
+      let weatherCall = `${process.env.REACT_APP_SERVER}/weather?city=${city}`;
+      let weatherData = await axios.get(weatherCall)
+      this.setState({
+        weatherData: weatherData.data,
+      })
+      this.setState({
+        weatherModal: true,
+      })
+      // console.log(weatherData)
+    } catch (error) {
+      this.setState({
+        error: true,
+        showModal: true,
+        errorMessage: `An error has been caught: ${error.response.status} ${error.response.statusText}`
+      });
+      // console.log(this.state.errorMessage);
+    }
   }
-}
-  render() {
-    let cityResults = this.state.cityData.map((city, index) => {
-      console.log(index)
+  getMovies = async (city) => {
+    try {
+      let movieCall = `${process.env.REACT_APP_SERVER}/movies?city=${city}`;
+      let movieData = await axios.get(movieCall)
+      this.setState({
+        movieData: movieData.data,
+      })
+      this.setState({
+        movieModal: true,
+      })
+      // console.log(movieData)
+    } catch (error) {
+      this.setState({
+        error: true,
+        showModal: true,
+        errorMessage: `An error has been caught: ${error.response.status} ${error.response.statusText}`
+      });
+      // console.log(this.state.errorMessage);
+    }
+  }
+    render() {
+      let cityResults = this.state.cityData.map((city, index) => {
+        // console.log(index)
+        return (
+          <Results
+            key={index}
+            city={city}
+            getWeather={this.getWeather}
+            getMovies={this.getMovies}
+          />
+        );
+      }
+      );
       return (
-        <Results
-          key={index}
-          city={city}
-          getWeather={this.getWeather}
-        />
+        <>
+          <Header />
+          <Cityform
+            handleCityCall={this.handleCityCall}
+          />
+          <main>
+            {cityResults}
+          </main>
+          <Errormodal
+            error={this.state.error}
+            errorMessage={this.state.errorMessage}
+            modalState={this.state.showModal}
+            showModal={this.showModal}
+            hideModal={this.hideModal}
+          />
+          <Weather
+            weatherModal={this.state.weatherModal}
+            hideWeatherModal={this.hideModal}
+            weatherData={this.state.weatherData}
+          />
+          <Movie
+            movieModal={this.state.movieModal}
+            hideMovieModal={this.hideModal}
+            movieData={this.state.movieData}  
+          />
+        </>
       );
     }
-    );
-    return (
-      <>
-        <Header />
-        <Cityform
-          handleCityCall={this.handleCityCall}
-        />
-        <main>
-          {cityResults}
-        </main>
-        <Errormodal
-          error={this.state.error}
-          errorMessage={this.state.errorMessage}
-          modalState={this.state.showModal}
-          showModal={this.showModal}
-          hideModal={this.hideModal}
-        />
-        <Weather
-          weatherModal={this.state.weatherModal}
-          hideweatherModal={this.hideModal}
-          weatherData={this.state.weatherData}
-        />
-      </>
-    );
   }
-}
 export default App;
