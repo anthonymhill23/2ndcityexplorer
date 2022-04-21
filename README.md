@@ -1,6 +1,6 @@
-![WRRC](./src/Day1snip.jpg)
-
-
+![WRRC](./public/imgs/Day1snip.jpg/Day1snip.jpg)
+![WRRC2](./public/imgs/Untitled.png)
+![WRRC3](./public/imgs/wrrc-3.png)
 # Project Name
 
 **Author**: Anthony Hill
@@ -17,6 +17,7 @@ I am building a page that uses an API to see a city and see what is available in
 
 ## Change Log
 Version 1. Search bar functionality as well as map population. as well as error handling. 
+Version 2. City weather and Movie data both working
 
 ## Credit and Collaborations
 Scott evans for creating the miro screenshot with me. 

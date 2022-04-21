@@ -3,7 +3,6 @@ import { Modal } from "react-bootstrap";
 
 class Errormodal extends React.Component {
 
-
   render() {
     return (
       <>
@@ -20,8 +19,7 @@ class Errormodal extends React.Component {
     )
   }
 }
-
-export default Errormodal
+    export default Errormodal;
 
 
 
