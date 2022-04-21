@@ -9,7 +9,7 @@ render(){
   return (
     <>
     <h1>{this.props.movie.title}</h1>
-    <p>{this.props.movie.tagline}</p>
+    
     <p>{this.props.movie.description}</p>
     <p>Language: {this.props.movie.language}</p>
     </>
