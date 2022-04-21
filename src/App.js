@@ -56,6 +56,7 @@ class App extends React.Component {
   getWeather = async (city) => {
     try {
       let weatherCall = `${process.env.REACT_APP_SERVER}/weather?city=${city}`;
+      console.log(weatherCall)
       let weatherData = await axios.get(weatherCall)
       console.log(weatherData.data)
       this.setState({
