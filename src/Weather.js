@@ -21,6 +21,7 @@ class Weather extends React.Component {
         <Modal
           show={this.props.weatherModal}
           onClick={this.props.hideModal}
+          onHide={this.props.hideWeatherModal}
         >
           <Modal.Header closeButton></Modal.Header>
           <Modal.Body onClick={this.props.hideModal}>
