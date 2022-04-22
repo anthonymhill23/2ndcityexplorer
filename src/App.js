@@ -9,6 +9,7 @@ import Errormodal from './Errormodal.js';
 import Weather from './Weather.js';
 import Movie from './Movie.js';
 import './Cityform.css'
+import './Main.css'
 
 class App extends React.Component {
   constructor(props) {
