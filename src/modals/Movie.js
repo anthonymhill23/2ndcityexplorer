@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
-import Moviedata from './Moviedata'
+import Moviedata from '../modals/Moviedata'
 
 class Movie extends React.Component {
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
-import Weatherdata from './Weatherdata.js'
+import Weatherdata from '../modals/Weatherdata.js'
 
 class Weather extends React.Component {
 

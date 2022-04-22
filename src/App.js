@@ -1,15 +1,16 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Cityform from '../cityform/Cityform';
-import Results from '../cityform/Results';
+import Cityform from './cityfolder/Cityform.js';
+import Results from './cityfolder/Results';
 import Header from './Header.js';
 import axios from 'axios';
 import Errormodal from '../src/modals/Errormodal';
 import Weather from '../src/modals/Weather';
 import Movie from '../src/modals/Movie';
-import  './Cityform.css';
+import  './cityfolder/Cityform.css';
 import './Main.css'
+import '../src/Header.css'
 
 class App extends React.Component {
   constructor(props) {
