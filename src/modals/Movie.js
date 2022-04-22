@@ -1,17 +1,17 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
-import Weatherdata from './Weatherdata.js'
+import Moviedata from '../modals/Moviedata'
 
-class Weather extends React.Component {
+class Movie extends React.Component {
 
   render() {
-    let weatherResults = this.props.weatherData.map((weather, index) => {
+    let movieResults = this.props.movieData.map((movie, index) => {
       console.log(index)
-      console.log(weather)
+      console.log(movie)
       return (
-       <Weatherdata
+       <Moviedata
        key = {index}  
-       weather={weather}
+       movie={movie}
        />
       );
     }
@@ -19,17 +19,17 @@ class Weather extends React.Component {
     return (
       <>
         <Modal
-          show={this.props.weatherModal}
+          show={this.props.movieModal}
           onClick={this.props.hideModal}
-          onHide={this.props.hideWeatherModal}
+          onHide={this.props.hideMovieModal}
         >
           <Modal.Header closeButton></Modal.Header>
           <Modal.Body onClick={this.props.hideModal}>
-            {weatherResults}
+            {movieResults}
           </Modal.Body>
         </Modal> 
       </>
     )
   }
 }
-    export default Weather;
+    export default Movie;
