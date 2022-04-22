@@ -2,6 +2,7 @@
 ![WRRC2](./public/imgs/Untitled.png)
 ![WRRC3](./public/imgs/wrrc-3.png)
 ![WRRC4](./public/imgs/WRRC4.png)
+![WRRC5](./public/imgs/WRRC5.png)
 # Project Name
 
 **Author**: Anthony Hill
@@ -24,3 +25,4 @@ Version 2. City weather and Movie data both working
 Scott evans for creating the miro screenshot with me. 
 Liesel White for always being a sounding board back and forth
 David Heckler for putting up with me and my confusion
+Justin hammerly for being a fresh set of eyes when I was stuck
