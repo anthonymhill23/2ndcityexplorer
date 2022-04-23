@@ -1,4 +1,4 @@
-![WRRC](./public/imgs/Day1snip.jpg/Day1snip.jpg)
+![WRRC](./public/imgs/Day1snip.jpg)
 ![WRRC2](./public/imgs/Untitled.png)
 ![WRRC3](./public/imgs/wrrc-3.png)
 ![WRRC4](./public/imgs/WRRC4.png)
